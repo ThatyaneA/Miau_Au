@@ -15,6 +15,7 @@ import miau_au.DAO.Conexao;
  */
 public class Tutor extends Pessoa {
     private String descricao;
+    //adicionar email ao tutor(pessoa). Arrumar ordem
 
     public Tutor(String descricao, String nome, String cpf, String endereco, String telefone, Login login) {
         super(nome, cpf, endereco, telefone, login);

@@ -9,5 +9,10 @@ package miau_au.controller;
  * @author thaty
  */
 public class CConsulta {
-    
+      public void excluirOng(int id){
+          
+      }
+      public void excluirTutor(int id){
+          
+      }
 }

@@ -9,5 +9,6 @@ package miau_au.controller;
  * @author thaty
  */
 public class CLogin {
-    
+
 }
+

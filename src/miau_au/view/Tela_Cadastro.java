@@ -5,7 +5,7 @@
 package miau_au.view;
 
 import javax.swing.JOptionPane;
-
+import miau_au.controller.CCadastro;
 /**
  *
  * @author USUARIO
@@ -31,8 +31,8 @@ public class Tela_Cadastro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        tdUsu = new javax.swing.JTextField();
+        tfSen = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -109,10 +109,6 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                        .addComponent(btCadastraOng))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btDesc)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -131,8 +127,12 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tfEma)
                                     .addComponent(tfTel, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(37, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                        .addComponent(btCadastraOng)
+                        .addGap(83, 83, 83))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,17 +149,16 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                     .addComponent(tfCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfTelefone)
                     .addComponent(tfTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(btDesc)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btDesc)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(btCadastraOng)
-                        .addGap(17, 17, 17))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCadastraOng)))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("ONG:", jPanel1);
@@ -288,9 +287,9 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                                    .addComponent(jTextField2))))))
-                .addContainerGap(47, Short.MAX_VALUE))
+                                    .addComponent(tdUsu, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                    .addComponent(tfSen))))))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,10 +299,10 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tdUsu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfSen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(28, 28, 28)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,14 +314,14 @@ public class Tela_Cadastro extends javax.swing.JFrame {
 
     private void btCadastraOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastraOngActionPerformed
        
-       OngController ongController = new OngController();
-       ongController.CadastraOng(tfNome.getText(),tfCnpj.getText(),tfEma.getText(), tfTel.getText(), tfDes.getText());
+       CCadastro ong = new CCadastro();
+       ong.CadastraOng(tdUsu.getText(),tfSen.getText(),tfNome.getText(),tfCnpj.getText(),tfEma.getText(), tfTel.getText(), tfDes.getText());
        JOptionPane.showMessageDialog(null, "ONG cadastrada com sucesso!!!");
     }//GEN-LAST:event_btCadastraOngActionPerformed
 
     private void btCadasTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadasTutorActionPerformed
-       TutorController tutorController = new TutorController();
-       tutorController.CadastraTutor(tfNm.getText(),tfCpf.getText(),tfEm.getText(), tfTlf.getText(), tfEnd.getText(),tfCep.getText(),tfDescri.getText());
+       CCadastro tutor = new CCadastro();
+       tutor.CadastraTutor(tdUsu.getText(),tfSen.getText(),tfNm.getText(),tfCpf.getText(),tfEm.getText(), tfTlf.getText(), tfEnd.getText(),tfCep.getText(),tfDescri.getText());
        JOptionPane.showMessageDialog(null, "Tutor cadastrado com sucesso!!!");
     }//GEN-LAST:event_btCadasTutorActionPerformed
 
@@ -382,8 +381,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField tdUsu;
     private javax.swing.JTextField tfCep;
     private javax.swing.JTextField tfCnpj;
     private javax.swing.JTextField tfCpf;
@@ -395,6 +393,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
     private javax.swing.JTextField tfEnd;
     private javax.swing.JTextField tfNm;
     private javax.swing.JTextField tfNome;
+    private javax.swing.JTextField tfSen;
     private javax.swing.JTextField tfTel;
     private javax.swing.JLabel tfTelefone;
     private javax.swing.JTextField tfTlf;

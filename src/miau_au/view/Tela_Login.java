@@ -4,6 +4,8 @@
  */
 package miau_au.view;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author USUARIO
@@ -32,8 +34,8 @@ public class Tela_Login extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbEntrar = new javax.swing.JButton();
+        jbNovoUsuario = new javax.swing.JButton();
 
         jLabel2.setText("jLabel2");
 
@@ -48,11 +50,21 @@ public class Tela_Login extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe Script", 0, 14)); // NOI18N
         jLabel4.setText("Senha:");
 
-        jButton1.setFont(new java.awt.Font("Segoe Script", 0, 14)); // NOI18N
-        jButton1.setText("Entrar");
+        jbEntrar.setFont(new java.awt.Font("Segoe Script", 0, 14)); // NOI18N
+        jbEntrar.setText("Entrar");
+        jbEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEntrarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe Script", 0, 14)); // NOI18N
-        jButton2.setText("Novo usuário");
+        jbNovoUsuario.setFont(new java.awt.Font("Segoe Script", 0, 14)); // NOI18N
+        jbNovoUsuario.setText("Novo usuário");
+        jbNovoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNovoUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,9 +85,9 @@ public class Tela_Login extends javax.swing.JFrame {
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(jButton1)
+                            .addComponent(jbEntrar)
                             .addGap(44, 44, 44)
-                            .addComponent(jButton2)
+                            .addComponent(jbNovoUsuario)
                             .addGap(16, 16, 16))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(218, 218, 218)
@@ -97,13 +109,30 @@ public class Tela_Login extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jbNovoUsuario)
+                    .addComponent(jbEntrar))
                 .addContainerGap(160, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEntrarActionPerformed
+        Tela_Consultar TelaCon = new Tela_Consultar();
+        
+        TelaCon.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        TelaCon.setVisible(true);
+        TelaCon.setSize(685, 625);
+        
+    }//GEN-LAST:event_jbEntrarActionPerformed
+
+    private void jbNovoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNovoUsuarioActionPerformed
+        Tela_Cadastro TelaCadas = new Tela_Cadastro();
+        
+        TelaCadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        TelaCadas.setVisible(true);
+        TelaCadas.setSize(688, 588);
+    }//GEN-LAST:event_jbNovoUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,13 +170,13 @@ public class Tela_Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton jbEntrar;
+    private javax.swing.JButton jbNovoUsuario;
     // End of variables declaration//GEN-END:variables
 }

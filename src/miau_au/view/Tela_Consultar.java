@@ -4,6 +4,10 @@
  */
 package miau_au.view;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import miau_au.controller.CConsulta;
+
 /**
  *
  * @author USUARIO
@@ -29,20 +33,20 @@ public class Tela_Consultar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbConsultarOng = new javax.swing.JButton();
+        jbConsultarTutor = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        jbEditarOng = new javax.swing.JButton();
+        jbEditarTutor = new javax.swing.JButton();
+        jbExcluirOng = new javax.swing.JButton();
+        jbExcluirTutor = new javax.swing.JButton();
+        id = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        jbPesquisarOng = new javax.swing.JButton();
+        jbPesquisarTutor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,11 +59,11 @@ public class Tela_Consultar extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
-        jButton1.setText("Consultar ONG");
+        jbConsultarOng.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
+        jbConsultarOng.setText("Consultar ONG");
 
-        jButton2.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
-        jButton2.setText("Consultar Tutor");
+        jbConsultarTutor.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
+        jbConsultarTutor.setText("Consultar Tutor");
 
         jLabel2.setFont(new java.awt.Font("Segoe Script", 0, 10)); // NOI18N
         jLabel2.setText("CNPJ:");
@@ -80,33 +84,53 @@ public class Tela_Consultar extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton3.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
-        jButton3.setText("Editar ONG:");
-
-        jButton4.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
-        jButton4.setText("Editar Tutor:");
-
-        jButton5.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
-        jButton5.setText("Excluir ONG:");
-
-        jButton6.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
-        jButton6.setText("Excluir Tutor:");
-
-        jLabel4.setText("Digite o ID a ser modificado:");
-
-        jButton7.setFont(new java.awt.Font("Segoe Script", 0, 10)); // NOI18N
-        jButton7.setText("Pesquisar ONGs");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jbEditarOng.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
+        jbEditarOng.setText("Editar ONG:");
+        jbEditarOng.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jbEditarOngActionPerformed(evt);
             }
         });
 
-        jButton8.setFont(new java.awt.Font("Segoe Script", 0, 10)); // NOI18N
-        jButton8.setText("Pesquisar Tutores");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        jbEditarTutor.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
+        jbEditarTutor.setText("Editar Tutor:");
+        jbEditarTutor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                jbEditarTutorActionPerformed(evt);
+            }
+        });
+
+        jbExcluirOng.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
+        jbExcluirOng.setText("Excluir ONG:");
+        jbExcluirOng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirOngActionPerformed(evt);
+            }
+        });
+
+        jbExcluirTutor.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
+        jbExcluirTutor.setText("Excluir Tutor:");
+        jbExcluirTutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirTutorActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Digite o ID a ser modificado:");
+
+        jbPesquisarOng.setFont(new java.awt.Font("Segoe Script", 0, 10)); // NOI18N
+        jbPesquisarOng.setText("Pesquisar ONGs");
+        jbPesquisarOng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPesquisarOngActionPerformed(evt);
+            }
+        });
+
+        jbPesquisarTutor.setFont(new java.awt.Font("Segoe Script", 0, 10)); // NOI18N
+        jbPesquisarTutor.setText("Pesquisar Tutores");
+        jbPesquisarTutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPesquisarTutorActionPerformed(evt);
             }
         });
 
@@ -123,37 +147,40 @@ public class Tela_Consultar extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3)
+                                .addComponent(jbEditarOng)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                                .addComponent(jButton4)
+                                .addComponent(jbExcluirOng)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                                .addComponent(jbEditarTutor)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton6))
+                                .addComponent(jbExcluirTutor))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addComponent(id, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                                 .addGap(381, 381, 381))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jbPesquisarTutor, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton1))
-                                        .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(24, 24, 24)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton2))
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jbConsultarOng))
+                                                .addComponent(jbPesquisarOng, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(24, 24, 24)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(jbConsultarTutor))
+                                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,24 +195,24 @@ public class Tela_Consultar extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(jbConsultarTutor)
+                    .addComponent(jbConsultarOng))
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8))
+                    .addComponent(jbPesquisarOng, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPesquisarTutor))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(jbEditarOng)
+                    .addComponent(jbEditarTutor)
+                    .addComponent(jbExcluirOng)
+                    .addComponent(jbExcluirTutor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54))
         );
 
@@ -196,13 +223,46 @@ public class Tela_Consultar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jbPesquisarOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarOngActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jbPesquisarOngActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void jbPesquisarTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarTutorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jbPesquisarTutorActionPerformed
+
+    private void jbExcluirOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirOngActionPerformed
+        CConsulta ong= new CConsulta();
+         idExclui = Integer.parseInt(id.getText());
+        
+        JOptionPane.showInputDialog(null,"Informe o id:");
+        ong.excluirOng(idExclui);      
+    }//GEN-LAST:event_jbExcluirOngActionPerformed
+
+    private void jbExcluirTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirTutorActionPerformed
+       CConsulta tutor = new CConsulta();
+        idExclui = Integer.parseInt(id.getText());
+        
+        JOptionPane.showInputDialog(null,"Informe o id:");
+        tutor.excluirTutor(idExclui);   
+    }//GEN-LAST:event_jbExcluirTutorActionPerformed
+
+    private void jbEditarOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarOngActionPerformed
+        System.out.println("bfdhdfhdfh");
+        Tela_Cadastro TelaCadas = new Tela_Cadastro();
+        
+        TelaCadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        TelaCadas.setVisible(true);
+        TelaCadas.setSize(688, 588);
+    }//GEN-LAST:event_jbEditarOngActionPerformed
+
+    private void jbEditarTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarTutorActionPerformed
+        Tela_Cadastro TelaCadas = new Tela_Cadastro();
+        
+        TelaCadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        TelaCadas.setVisible(true);
+        TelaCadas.setSize(691, 600);
+    }//GEN-LAST:event_jbEditarTutorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,16 +298,9 @@ public class Tela_Consultar extends javax.swing.JFrame {
             }
         });
     }
-
+      private int idExclui = 0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -256,6 +309,13 @@ public class Tela_Consultar extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jbConsultarOng;
+    private javax.swing.JButton jbConsultarTutor;
+    private javax.swing.JButton jbEditarOng;
+    private javax.swing.JButton jbEditarTutor;
+    private javax.swing.JButton jbExcluirOng;
+    private javax.swing.JButton jbExcluirTutor;
+    private javax.swing.JButton jbPesquisarOng;
+    private javax.swing.JButton jbPesquisarTutor;
     // End of variables declaration//GEN-END:variables
 }
