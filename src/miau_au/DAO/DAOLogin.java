@@ -12,4 +12,19 @@ import java.sql.SQLException;
  * @author thaty
  */
 public class DAOLogin {
+    public int cadastrarUsuario(String usuario, String senha) throws SQLException{
+        int id = 0;
+        String sql = "INSERT INTO login (usuario, senha) VALUES ("
+                     +"'"+ usuario +"', "
+                     +"'"+ senha +")";
+        Conexao.executar(sql);
+        try{
+            String comando = "'SELECT idLogin FROM login WHERE usuario ="+usuario+"'";
+            ResultSet rs = Conexao.consultar(comando);
+            id = rs.getInt("idLogin");
+        }catch(SQLException e){
+            throw new SQLException(e);
+        }
+        return id;
+    }
 }
