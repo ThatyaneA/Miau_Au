@@ -17,13 +17,13 @@ public class Tutor extends Pessoa {
     private String descricao;
     //adicionar email ao tutor(pessoa). Arrumar ordem
 
-    public Tutor(String descricao, String nome, String cpf, String endereco, String telefone, Login login) {
-        super(nome, cpf, endereco, telefone, login);
+    public Tutor(String descricao, String nome, String cpf, String email, String endereco, String telefone, Login login) {
+        super(nome, cpf, email, endereco, telefone, login);
         this.descricao = descricao;
     }
     
-    public Tutor(String nome, String cpf, String endereco, String telefone) {
-        super(nome, cpf, endereco, telefone);
+    public Tutor(String nome, String cpf, String email, String endereco, String telefone) {
+        super(nome, cpf, email, endereco, telefone);
     }
 
     public String getDescricao() {
@@ -45,14 +45,15 @@ public class Tutor extends Pessoa {
     
     public static Tutor consultarTutor(String codigoCpf) throws SQLException{
         try{
-            String sql = "SELECT idPessoa, nome, cpf, endereco, telefone FROM pessoa WHERE cpf="+codigoCpf;
+            String sql = "SELECT idPessoa, nome, cpf, email, endereco, telefone FROM pessoa WHERE cpf="+codigoCpf;
             ResultSet rs = Conexao.consultar(sql);
             String nome = rs.getString("nome");
             String cpf = rs.getString("cpf");
+            String email = rs.getString("email");
             String endereco = rs.getString("endereco");
             String telefone = rs.getString("telefone");
             int idPessoa =rs.getInt("idPessoa");
-            Tutor tutor = new Tutor (nome,cpf, endereco, telefone);
+            Tutor tutor = new Tutor (nome,cpf,email,endereco,telefone);
             tutor.setIdPessoa(idPessoa);
             String consultaFilha = "SELECT descricao WHERE pessoa="+idPessoa;
             ResultSet resultadoFilho = Conexao.consultar(consultaFilha);
@@ -65,17 +66,18 @@ public class Tutor extends Pessoa {
     
     public static ArrayList<Tutor> listaTutores() throws SQLException{
         ArrayList<Tutor> lista = new ArrayList<> ();
-            String sql = "SELECT idPessoa, nome, cpf, endereco, telefone FROM pessoa WHERE ORDER BY nome";
+            String sql = "SELECT idPessoa, nome, cpf, email, endereco, telefone FROM pessoa WHERE ORDER BY nome";
             ResultSet rs = Conexao.consultar(sql);
         if (rs != null){
             try{
                 while (rs.next()){
                     String nome = rs.getString("nome");
                     String cpf = rs.getString("cpf");
+                    String email = rs.getString("email");
                     String endereco = rs.getString("endereco");
                     String telefone = rs.getString("telefone");
                     int idPessoa =rs.getInt("idPessoa");
-                    Tutor tutor = new Tutor (nome,cpf, endereco, telefone);
+                    Tutor tutor = new Tutor (nome,cpf, email, endereco, telefone);
                     tutor.setIdPessoa(idPessoa);
                     String consultaFilha = "SELECT descricao WHERE pessoa="+idPessoa;
                     ResultSet resultadoFilho = Conexao.consultar(consultaFilha);

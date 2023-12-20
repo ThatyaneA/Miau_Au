@@ -4,10 +4,12 @@
  */
 package miau_au.DAO;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author thaty
  */
 public class DAOLogin {
-    
 }

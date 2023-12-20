@@ -15,11 +15,21 @@ import miau_au.DAO.Conexao;
 public abstract class Pessoa {
     private String nome;
     private String cpf;
+    private String email;
     private String endereco;
     private String telefone;
     private Login login;
     private int idPessoa;
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    
     public int getIdPessoa() {
         return idPessoa;
     }
@@ -68,9 +78,10 @@ public abstract class Pessoa {
         this.login = login;
     }
     
-    public Pessoa(String nome,String cpf,String endereco,String telefone, Login login){
+    public Pessoa(String nome,String cpf, String email, String endereco,String telefone, Login login){
         this.nome=nome;
         this.cpf=cpf;
+        this.email=email;
         this.endereco=endereco;
         this.telefone=telefone;
         this.login=login;
