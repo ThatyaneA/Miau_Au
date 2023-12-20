@@ -88,13 +88,12 @@ public class Ong {
     
     
     public void cadastrarOng(){
-        String sql = "INSERT INTO ong (nome,cnpj,descricao,email,telefone,login) VALUES ("
         +"'"+ this.getNome() +"', "
         +"'"+ this.getCnpj() +"', "
         +"'"+ this.getDescricao() +"', "
         +"'"+ this.getEmail() +"', "
         +"'"+ this.getTelefone() +"', "
-        +"'"+ this.getLogin().getIdLogin()+")";
+        this.getLogin().getIdLogin()
         Conexao.executar(sql);        
     }
     

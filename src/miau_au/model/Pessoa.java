@@ -87,17 +87,19 @@ public abstract class Pessoa {
         this.login=login;
     }
     
-    public Pessoa(String nome,String cpf,String endereco,String telefone){
+    public Pessoa(String nome,String cpf,String email, String endereco,String telefone){
         this.nome=nome;
         this.cpf=cpf;
+        this.email=email;
         this.endereco=endereco;
         this.telefone=telefone;
     }
     
     public void cadastrarPessoa() throws SQLException{
-        String sql = "INSERT INTO pessoa (nome,cpf,endereco,telefone) VALUES ("
+        String sql = "INSERT INTO pessoa (nome,cpf,email,endereco,telefone) VALUES ("
             +"'"+ this.getNome() +"', "
             +"'"+ this.getCpf() +"', "
+            +"'"+ this.getEmail() +"', "
             +"'"+ this.getEndereco() +"', "
             +"'"+ this.getTelefone() +"', "
             +"'"+ this.getLogin().getIdLogin()+")";
@@ -115,6 +117,7 @@ public abstract class Pessoa {
         String sql = "UPDATE pessoa SET "
             +"nome = '"+ this.getNome()+ "', "
             +"cpf = '"+ this.getCpf()+ "', "
+            +"email= '"+ this.getEmail()+ ","
             +"endereco = "+ this.getEndereco()+ "', "
             +"telefone = "+ this.getTelefone()+ "', "
             +"WHERE idpessoa = "+ this.getIdPessoa();
