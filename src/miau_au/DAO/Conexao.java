@@ -8,8 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 /**
  *
@@ -17,20 +15,21 @@ import java.sql.SQLException;
  */
 public class Conexao {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/pi?zeroDateTimeBehavior=convertToNull";
+    private static final String URL = "jdbc:mysql://localhost:3306/pi?useTimezone=true&serverTimezone=UTC";
     private static final String USER = "root";
+    
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String SENHA = "1995";
+    private static final String SENHA = "Polly28.";
+    
     
     public static void executar (String query){
         try{
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL, USER, SENHA);
-            PreparedStatement st = conn.prepareStatement(query);
-            st.execute();
-            st.close();
+            java.sql.Statement st = conn.createStatement();
+            st.execute(query);
             conn.close();
-        }catch (ClassNotFoundException | SQLException e){
+        }catch (Exception e){
             JOptionPane.showMessageDialog(null, e.toString());
         }
     }
@@ -39,14 +38,13 @@ public class Conexao {
         try{
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL,USER,SENHA);
-            PreparedStatement st = conn.prepareStatement(query);
-            ResultSet rs = st.executeQuery();
+            java.sql.Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
             //conn.close();
             return rs;
-        }catch (ClassNotFoundException | SQLException e){
+        }catch (Exception e){
             JOptionPane.showMessageDialog(null, e.toString());
             return null;
         }
     }
-    
 }

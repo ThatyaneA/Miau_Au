@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/thaty/OneDrive/Documentos/NetBeansProjects/Miau_Au/src/miau_au/DAO/Conexao.java</file>
+            <file>file:/C:/Users/thaty/OneDrive/Documentos/NetBeansProjects/Miau_Au/src/miau_au/DAO/DAOPessoa.java</file>
+            <file>file:/C:/Users/thaty/OneDrive/Documentos/NetBeansProjects/Miau_Au/src/miau_au/model/Tutor.java</file>
+            <file>file:/C:/Users/thaty/OneDrive/Documentos/NetBeansProjects/Miau_Au/src/miau_au/Miau_Au.java</file>
+            <file>file:/C:/Users/thaty/OneDrive/Documentos/NetBeansProjects/Miau_Au/src/miau_au/model/Login.java</file>
+            <file>file:/C:/Users/thaty/OneDrive/Documentos/NetBeansProjects/Miau_Au/src/miau_au/controller/CCadastro.java</file>
+            <file>file:/C:/Users/thaty/OneDrive/Documentos/NetBeansProjects/Miau_Au/src/miau_au/DAO/DAOTutor.java</file>
+            <file>file:/C:/Users/thaty/OneDrive/Documentos/NetBeansProjects/Miau_Au/src/miau_au/DAO/DAOLogin.java</file>
+        </group>
     </open-files>
 </project-private>

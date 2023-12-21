@@ -4,6 +4,9 @@
  */
 package miau_au;
 
+import javax.swing.JFrame;
+import miau_au.view.Tela_Login;
+
 /**
  *
  * @author thaty
@@ -14,7 +17,10 @@ public class Miau_Au {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Tela_Login TelaLog = new Tela_Login();
+        TelaLog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        TelaLog.setVisible(true);
+        TelaLog.setSize(661, 555);
     }
     
 }

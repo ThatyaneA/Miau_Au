@@ -5,10 +5,9 @@
 package miau_au.model;
 
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import miau_au.DAO.Conexao;
+import miau_au.DAO.DAOPessoa;
+import miau_au.DAO.DAOTutor;
 /**
  *
  * @author thaty
@@ -17,6 +16,10 @@ public class Tutor extends Pessoa {
     private String descricao;
     //adicionar email ao tutor(pessoa). Arrumar ordem
 
+    public Tutor(){
+        
+    }
+    
     public Tutor(String descricao, String nome, String cpf, String email, String endereco, String telefone, Login login) {
         super(nome, cpf, email, endereco, telefone, login);
         this.descricao = descricao;
@@ -36,73 +39,41 @@ public class Tutor extends Pessoa {
     
     //método para criar nova pessoa no banco de dados
     @Override
-    public void cadastrarPessoa(){
-        String sql = "INSERT INTO tutor (descricao, pessoa) VALUES ("
-        +"'"+ this.getDescricao() +"', "
-        +"'"+ this.getIdPessoa()+")";
-        Conexao.executar(sql);
+    public void cadastrarPessoa() throws SQLException{
+        String nomeP = this.getNome();
+        String cpfP = this.getCpf();
+        String emailP = this.getEmail();
+        String enderecoP = this.getDescricao();
+        String telefoneP = this.getTelefone();
+        int loginP = this.getLogin().getIdLogin();
+        DAOPessoa criaPessoa= new DAOPessoa();
+        int id = criaPessoa.cadastrarPessoa(nomeP, cpfP, emailP, enderecoP, telefoneP, loginP);
+        this.setIdPessoa(id);
+        String descricaoT = this.getDescricao();
+        DAOTutor criaTutor = new DAOTutor();
+        criaTutor.cadastrarPessoa(descricaoT, id);
     }
-    
-    public static Tutor consultarTutor(String codigoCpf) throws SQLException{
-        try{
-            String sql = "SELECT idPessoa, nome, cpf, email, endereco, telefone FROM pessoa WHERE cpf="+codigoCpf;
-            ResultSet rs = Conexao.consultar(sql);
-            String nome = rs.getString("nome");
-            String cpf = rs.getString("cpf");
-            String email = rs.getString("email");
-            String endereco = rs.getString("endereco");
-            String telefone = rs.getString("telefone");
-            int idPessoa =rs.getInt("idPessoa");
-            Tutor tutor = new Tutor (nome,cpf,email,endereco,telefone);
-            tutor.setIdPessoa(idPessoa);
-            String consultaFilha = "SELECT descricao WHERE pessoa="+idPessoa;
-            ResultSet resultadoFilho = Conexao.consultar(consultaFilha);
-            tutor.setDescricao(resultadoFilho.getString("descricao"));
-            return tutor;
-        }catch(SQLException e){
-            throw new SQLException(e);
-        }
-    }
-    
-    public static ArrayList<Tutor> listaTutores() throws SQLException{
-        ArrayList<Tutor> lista = new ArrayList<> ();
-            String sql = "SELECT idPessoa, nome, cpf, email, endereco, telefone FROM pessoa WHERE ORDER BY nome";
-            ResultSet rs = Conexao.consultar(sql);
-        if (rs != null){
-            try{
-                while (rs.next()){
-                    String nome = rs.getString("nome");
-                    String cpf = rs.getString("cpf");
-                    String email = rs.getString("email");
-                    String endereco = rs.getString("endereco");
-                    String telefone = rs.getString("telefone");
-                    int idPessoa =rs.getInt("idPessoa");
-                    Tutor tutor = new Tutor (nome,cpf, email, endereco, telefone);
-                    tutor.setIdPessoa(idPessoa);
-                    String consultaFilha = "SELECT descricao WHERE pessoa="+idPessoa;
-                    ResultSet resultadoFilho = Conexao.consultar(consultaFilha);
-                    tutor.setDescricao(resultadoFilho.getString("descricao"));
-                    lista.add(tutor);
-                }
-            }catch(SQLException e){
-                throw new SQLException(e);
-            }
-        }
-        return lista;
-    } 
     
     @Override
     public void editarPessoa(int idPessoa){
-        super.editarPessoa(idPessoa);
-        String sql = "UPDATE tutor SET "
-            +"descricao = "+ this.getDescricao()+ "', "
-            +"WHERE pessoa = "+ idPessoa;
-        Conexao.executar(sql);     
-    }
+        String nomeP= this.getNome();
+        String cpfP= this.getCpf();
+        String emailP= this.getEmail();
+        String enderecoP= this.getEndereco();
+        String telefoneP= this.getTelefone();
+        this.setIdPessoa(idPessoa);
+        DAOPessoa editPessoa = new DAOPessoa();
+        editPessoa.editarPessoa(idPessoa, nomeP, cpfP, emailP, enderecoP, telefoneP);
+        String descricaoP= this.getDescricao();
+        DAOTutor editTutor = new DAOTutor();
+        editTutor.editarPessoa(idPessoa, descricaoP);
+    }   
     
     @Override
     public void excluirPessoa(int idPessoa){
-        String sql = "DELETE FROM tutor WHERE pessoa = "+ idPessoa;
-        Conexao.executar(sql);
-    }        
+        DAOPessoa excluiP = new DAOPessoa();
+        excluiP.excluirPessoa(idPessoa);
+        DAOTutor excluiT = new DAOTutor();
+        excluiT.excluirTutor(idPessoa);
+    }    
 }

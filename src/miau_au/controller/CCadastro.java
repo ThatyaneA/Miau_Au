@@ -18,10 +18,10 @@ public class CCadastro {
     public void CadastraOng(String usuario, String senha, String nome, String cnpj, String email, String telefone, String descricao)throws SQLException{
         Login loginOng = new Login(usuario,senha);
         loginOng.cadastrarUsuario();
-        Ong criaOng = new Ong(nome,cnpj,email,telefone, descricao,loginOng);
+        Ong criaOng = new Ong(nome,cnpj,descricao,email,telefone,loginOng);
         criaOng.cadastrarOng();
     }
-    public  void CadastraTutor(String usuario, String senha, String nome, String cpf, String email, String telefone,String endereco, String cep,String descricao)throws SQLException{
+    public void CadastraTutor(String usuario, String senha, String nome, String cpf, String email, String telefone,String endereco, String cep,String descricao)throws SQLException{
         Login loginTutor = new Login(usuario,senha);
         loginTutor.cadastrarUsuario();
         Tutor criaTutor = new Tutor(descricao, nome, cpf, email, endereco, telefone, loginTutor);

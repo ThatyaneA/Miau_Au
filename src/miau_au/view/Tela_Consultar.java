@@ -13,7 +13,8 @@ import miau_au.controller.CConsulta;
  * @author USUARIO
  */
 public class Tela_Consultar extends javax.swing.JFrame {
-
+    private int idEdit;
+    private boolean editar= false;
     /**
      * Creates new form Tela_Consultar
      */
@@ -43,7 +44,7 @@ public class Tela_Consultar extends javax.swing.JFrame {
         jbEditarTutor = new javax.swing.JButton();
         jbExcluirOng = new javax.swing.JButton();
         jbExcluirTutor = new javax.swing.JButton();
-        id = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jbPesquisarOng = new javax.swing.JButton();
         jbPesquisarTutor = new javax.swing.JButton();
@@ -61,6 +62,11 @@ public class Tela_Consultar extends javax.swing.JFrame {
 
         jbConsultarOng.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
         jbConsultarOng.setText("Consultar ONG");
+        jbConsultarOng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbConsultarOngActionPerformed(evt);
+            }
+        });
 
         jbConsultarTutor.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
         jbConsultarTutor.setText("Consultar Tutor");
@@ -157,7 +163,7 @@ public class Tela_Consultar extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(id, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                                .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                                 .addGap(381, 381, 381))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +218,7 @@ public class Tela_Consultar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54))
         );
 
@@ -233,7 +239,7 @@ public class Tela_Consultar extends javax.swing.JFrame {
 
     private void jbExcluirOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirOngActionPerformed
         CConsulta ong= new CConsulta();
-         idExclui = Integer.parseInt(id.getText());
+         idExclui = Integer.parseInt(txtId.getText());
         
         JOptionPane.showInputDialog(null,"Informe o id:");
         ong.excluirOng(idExclui);      
@@ -241,28 +247,33 @@ public class Tela_Consultar extends javax.swing.JFrame {
 
     private void jbExcluirTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirTutorActionPerformed
        CConsulta tutor = new CConsulta();
-        idExclui = Integer.parseInt(id.getText());
+        idExclui = Integer.parseInt(txtId.getText());
         
         JOptionPane.showInputDialog(null,"Informe o id:");
         tutor.excluirTutor(idExclui);   
     }//GEN-LAST:event_jbExcluirTutorActionPerformed
 
     private void jbEditarOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarOngActionPerformed
-        System.out.println("bfdhdfhdfh");
-        Tela_Cadastro TelaCadas = new Tela_Cadastro();
-        
+        idEdit = Integer.parseInt(txtId.getText());
+        editar=true;
+        Tela_Cadastro TelaCadas = new Tela_Cadastro(editar, idEdit);
         TelaCadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         TelaCadas.setVisible(true);
         TelaCadas.setSize(688, 588);
     }//GEN-LAST:event_jbEditarOngActionPerformed
 
     private void jbEditarTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarTutorActionPerformed
-        Tela_Cadastro TelaCadas = new Tela_Cadastro();
-        
+        idEdit = Integer.parseInt(txtId.getText());
+        editar=true;
+        Tela_Cadastro TelaCadas = new Tela_Cadastro(editar, idEdit);
         TelaCadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         TelaCadas.setVisible(true);
         TelaCadas.setSize(691, 600);
     }//GEN-LAST:event_jbEditarTutorActionPerformed
+
+    private void jbConsultarOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarOngActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbConsultarOngActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,7 +311,6 @@ public class Tela_Consultar extends javax.swing.JFrame {
     }
       private int idExclui = 0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -317,5 +327,6 @@ public class Tela_Consultar extends javax.swing.JFrame {
     private javax.swing.JButton jbExcluirTutor;
     private javax.swing.JButton jbPesquisarOng;
     private javax.swing.JButton jbPesquisarTutor;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }

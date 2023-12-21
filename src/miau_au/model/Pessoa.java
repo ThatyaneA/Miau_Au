@@ -7,6 +7,7 @@ package miau_au.model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import miau_au.DAO.Conexao;
+import miau_au.DAO.DAOPessoa;
 
 /**
  *
@@ -21,6 +22,10 @@ public abstract class Pessoa {
     private Login login;
     private int idPessoa;
 
+    public Pessoa(){
+        
+    }
+    
     public String getEmail() {
         return email;
     }
@@ -95,38 +100,10 @@ public abstract class Pessoa {
         this.telefone=telefone;
     }
     
-    public void cadastrarPessoa() throws SQLException{
-        String sql = "INSERT INTO pessoa (nome,cpf,email,endereco,telefone) VALUES ("
-            +"'"+ this.getNome() +"', "
-            +"'"+ this.getCpf() +"', "
-            +"'"+ this.getEmail() +"', "
-            +"'"+ this.getEndereco() +"', "
-            +"'"+ this.getTelefone() +"', "
-            +"'"+ this.getLogin().getIdLogin()+")";
-        Conexao.executar(sql);
-        try{
-            String comando = "'SELECT idpessoa FROM pessoa WHERE cpf ="+this.getCpf()+"'";
-            ResultSet rs = Conexao.consultar(comando);
-            this.setIdPessoa(rs.getInt("idpessoa"));
-        }catch(SQLException e){
-            throw new SQLException(e);
-        }
-    }
+    public abstract void cadastrarPessoa() throws SQLException;
     
-    public void editarPessoa(int idPessoa){
-        String sql = "UPDATE pessoa SET "
-            +"nome = '"+ this.getNome()+ "', "
-            +"cpf = '"+ this.getCpf()+ "', "
-            +"email= '"+ this.getEmail()+ ","
-            +"endereco = "+ this.getEndereco()+ "', "
-            +"telefone = "+ this.getTelefone()+ "', "
-            +"WHERE idpessoa = "+ this.getIdPessoa();
-        Conexao.executar(sql);
-        this.setIdPessoa(idPessoa);
-    }
     
-    public void excluirPessoa(int idPessoa){
-        String sql = "DELETE FROM pessoa WHERE idPessoa = "+ idPessoa;
-        Conexao.executar(sql);
-    }
+    public abstract void editarPessoa(int idPessoa);
+    
+    public abstract void excluirPessoa(int idPessoa);
 }

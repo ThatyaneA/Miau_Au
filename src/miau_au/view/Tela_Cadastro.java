@@ -4,21 +4,33 @@
  */
 package miau_au.view;
 
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import miau_au.controller.CCadastro;
+import miau_au.controller.CConsulta;
 /**
  *
  * @author USUARIO
  */
 public class Tela_Cadastro extends javax.swing.JFrame {
-
+    boolean editar;
+    int idEdit;
     /**
      * Creates new form Tela_Cadastro
+     * @param editar
      */
+    public Tela_Cadastro(boolean editar) {
+        initComponents();
+        this.editar=editar;
+    }
+    public Tela_Cadastro(boolean editar, int idEdit) {
+        initComponents();
+        this.editar=editar;
+        this.idEdit=idEdit;
+    }
     public Tela_Cadastro() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +100,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tfDes);
 
         btCadastraOng.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
-        btCadastraOng.setText("Cadastrar");
+        btCadastraOng.setText("Cadastrar/Editar");
         btCadastraOng.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCadastraOngActionPerformed(evt);
@@ -130,7 +142,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
                         .addContainerGap(37, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                         .addComponent(btCadastraOng)
                         .addGap(83, 83, 83))))
         );
@@ -313,16 +325,33 @@ public class Tela_Cadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCadastraOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastraOngActionPerformed
-       
-       CCadastro ong = new CCadastro();
-       ong.CadastraOng(tdUsu.getText(),tfSen.getText(),tfNome.getText(),tfCnpj.getText(),tfEma.getText(), tfTel.getText(), tfDes.getText());
-       JOptionPane.showMessageDialog(null, "ONG cadastrada com sucesso!!!");
+        if(editar==false){
+            CCadastro ong = new CCadastro();
+            try{
+                ong.CadastraOng(tdUsu.getText(),tfSen.getText(),tfNome.getText(),tfCnpj.getText(),tfEma.getText(), tfTel.getText(), tfDes.getText());
+                JOptionPane.showMessageDialog(null, "ONG cadastrada com sucesso!!!");
+            }catch(SQLException sqlE){
+                JOptionPane.showMessageDialog(null, "Desculpe, algum dos dados é inválido.");
+            }
+        }else{
+            CConsulta editOng = new CConsulta();
+            editOng.editarOng(idEdit,tfNome.getText(),tfCnpj.getText(),tfDes.getText(), tfEma.getText(), tfTel.getText());
+        }
     }//GEN-LAST:event_btCadastraOngActionPerformed
 
     private void btCadasTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadasTutorActionPerformed
-       CCadastro tutor = new CCadastro();
-       tutor.CadastraTutor(tdUsu.getText(),tfSen.getText(),tfNm.getText(),tfCpf.getText(),tfEm.getText(), tfTlf.getText(), tfEnd.getText(),tfCep.getText(),tfDescri.getText());
-       JOptionPane.showMessageDialog(null, "Tutor cadastrado com sucesso!!!");
+        if(editar==false){
+            CCadastro tutor = new CCadastro();
+            try{
+                tutor.CadastraTutor(tdUsu.getText(),tfSen.getText(),tfNm.getText(),tfCpf.getText(),tfEm.getText(), tfTlf.getText(), tfEnd.getText(),tfCep.getText(),tfDescri.getText());
+                JOptionPane.showMessageDialog(null, "Tutor cadastrada com sucesso!!!");
+            }catch(SQLException sqlE){
+                JOptionPane.showMessageDialog(null, "Desculpe, algum dos dados é inválido.");
+            }
+        }else{
+            CConsulta editTutor = new CConsulta();
+            editTutor.editarTutor(idEdit,tfNome.getText(),tfCnpj.getText(),tfDes.getText(), tfEma.getText(), tfTel.getText());
+        }
     }//GEN-LAST:event_btCadasTutorActionPerformed
 
     /**

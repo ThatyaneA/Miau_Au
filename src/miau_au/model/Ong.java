@@ -4,10 +4,7 @@
  */
 package miau_au.model;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import miau_au.DAO.Conexao;
+import miau_au.DAO.DAOOng;
 
 /**
  *
@@ -21,6 +18,10 @@ public class Ong {
     private String telefone;
     private Login login;
 
+    public Ong(){
+        
+    }
+    
     public Ong(String nome, String cnpj, String descricao, String email, String telefone, Login login) {
         this.nome = nome;
         this.cnpj = cnpj;
@@ -88,67 +89,29 @@ public class Ong {
     
     
     public void cadastrarOng(){
-        +"'"+ this.getNome() +"', "
-        +"'"+ this.getCnpj() +"', "
-        +"'"+ this.getDescricao() +"', "
-        +"'"+ this.getEmail() +"', "
-        +"'"+ this.getTelefone() +"', "
-        this.getLogin().getIdLogin()
-        Conexao.executar(sql);        
+        String nomeO = this.getNome();
+        String cnpjO = this.getCnpj();
+        String descricaoO = this.getDescricao();
+        String emailO = this.getEmail();
+        String telefoneO = this.getTelefone();
+        int loginO = this.getLogin().getIdLogin();
+        System.out.println(loginO);
+        DAOOng criaOng = new DAOOng();
+        criaOng.cadastrarOng(nomeO, cnpjO, descricaoO, emailO, telefoneO, loginO);
     }
-    
-    public static Ong consultarOng(String codigoCnpj) throws SQLException{
-        try{
-            String sql = "SELECT idOng, nome, cnpj, descricao, email, telefone FROM ong WHERE cpf="+codigoCnpj;
-            ResultSet rs = Conexao.consultar(sql);
-            String nome = rs.getString("nome");
-            String cnpj = rs.getString("cnpj");
-            String descricao = rs.getString("descricao");
-            String email = rs.getString("email");
-            String telefone = rs.getString("telefone");
-            Ong ong = new Ong (nome, cnpj, descricao, email, telefone);
-            return ong;
-        }catch(SQLException e){
-            throw new SQLException(e);
-        }
-    }
-    
-    public static ArrayList<Ong> listaOngs() throws SQLException{
-        ArrayList<Ong> lista = new ArrayList<> ();
-            String sql = "SELECT idOng, nome, cnpj, descricao, email, telefone FROM ong ORDER BY nome";
-            ResultSet rs = Conexao.consultar(sql);
-        if (rs != null){
-            try{
-                while (rs.next()){
-                    String nome = rs.getString("nome");
-                    String cnpj = rs.getString("cnpj");
-                    String descricao = rs.getString("descricao");
-                    String email = rs.getString("email");
-                    String telefone = rs.getString("telefone");
-                    Ong ong = new Ong (nome, cnpj, descricao, email, telefone);
-                    lista.add(ong);
-                }
-            }catch(SQLException e){
-                throw new SQLException(e);
-            }
-        }
-        return lista;
-    } 
     
     public void editarOng(int idOng){
-        String sql = "UPDATE ong SET "
-            +"nome = "+ this.getNome()+ "', "
-            +"cnpj = "+ this.getCnpj()+ "', "
-            +"descricao = "+ this.getDescricao()+ "', "
-            +"email = "+ this.getEmail()+ "', "
-            +"telefone = "+ this.getTelefone()+ "', "
-            +"login = "+ this.getLogin().getIdLogin()+ "', "
-            +"WHERE idOng = "+ idOng;
-        Conexao.executar(sql);   
+        DAOOng editaOng = new DAOOng();
+        String nomeO= this.getNome();
+        String cnpjO= this.getCnpj();
+        String descricaoO = this.getDescricao();
+        String emailO = this.getEmail();
+        String telefoneO = this.getTelefone();
+        editaOng.editarOng(idOng, nomeO, cnpjO, descricaoO, emailO, telefoneO);
     }
     
     public void excluirOng(int idOng){
-        String sql = "DELETE FROM ong WHERE idOng = "+ idOng;
-        Conexao.executar(sql);
+        DAOOng excluiO = new DAOOng();
+        excluiO.excluirOng(idOng);
     }
 }

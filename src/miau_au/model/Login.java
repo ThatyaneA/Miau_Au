@@ -54,4 +54,18 @@ public class Login {
         this.setIdLogin(id);
     }
     
+    public boolean autenticarUsuario() throws SQLException {
+        DAOLogin autentLogin = new DAOLogin();
+        boolean certificacao=false;
+        try
+        {
+            certificacao = autentLogin.autenticarUsuario(this);
+        }
+        catch(SQLException se)
+        {
+            throw new SQLException(".Login " + se.getMessage());
+        }
+        return certificacao;
+    }
+    
 }
