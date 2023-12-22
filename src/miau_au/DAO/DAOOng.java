@@ -34,7 +34,7 @@ public class DAOOng {
         String telefone = "";
         Ong ong = new Ong (nome, cnpj, descricao, email, telefone);
         try{
-            String sql = "SELECT idOng, nome, cnpj, descricao, email, telefone FROM ong WHERE cpf='"+codigoCnpj+"'";
+            String sql = "SELECT idOng, nome, cnpj, descricao, email, telefone FROM ong WHERE cnpj='"+codigoCnpj+"'";
             ResultSet rs = Conexao.consultar(sql);
             while (rs.next()){
                 ong.setIdOng(rs.getInt("idOng"));
@@ -80,9 +80,10 @@ public class DAOOng {
             +"cnpj = '"+ cnpj + "', "
             +"descricao = '"+ descricao + "', "
             +"email = '"+ email + "', "
-            +"telefone = '"+ telefone + "', "
+            +"telefone = '"+ telefone + "' "
             +"WHERE idOng = "+ idOng;
-        Conexao.executar(sql);   
+        System.out.println(sql);
+        Conexao.executar(sql); 
     }
     
     public void excluirOng(int idOng){

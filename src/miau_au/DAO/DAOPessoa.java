@@ -40,7 +40,7 @@ public class DAOPessoa {
             +"cpf = '"+ cpf+ "', "
             +"email= '"+ email+ "',"
             +"endereco = '"+ endereco+ "', "
-            +"telefone = '"+ telefone+ "', "
+            +"telefone = '"+ telefone+ "' "
             +"WHERE idpessoa = "+ idPessoa;
         Conexao.executar(sql);
     }

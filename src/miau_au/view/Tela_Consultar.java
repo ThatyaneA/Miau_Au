@@ -161,19 +161,33 @@ public class Tela_Consultar extends javax.swing.JFrame {
     }
     
     private void excluirONG(){
-        CConsulta ong= new CConsulta();
-         idExclui = Integer.parseInt(txtId.getText());
-        
-        JOptionPane.showInputDialog(null,"Informe o id:");
-        ong.excluirOng(idExclui);   
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir essa ONG?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        if(opcao == JOptionPane.YES_OPTION)
+        {
+            CConsulta ong= new CConsulta();
+            idExclui = Integer.parseInt(txtId.getText());
+            ong.excluirOng(idExclui);
+            JOptionPane.showMessageDialog(null, "Excluído com Sucesso");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Exclusão cancelada");
+        }
     }
     
     private void excluirTutor() {
-        CConsulta tutor = new CConsulta();
-        idExclui = Integer.parseInt(txtId.getText());
-        
-        JOptionPane.showInputDialog(null,"Informe o id:");
-        tutor.excluirTutor(idExclui);   
+        int opcao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir esse Tutor?", "Confirmação", JOptionPane.YES_NO_OPTION);
+        if(opcao == JOptionPane.YES_OPTION)
+        {
+            CConsulta tutor = new CConsulta();
+            idExclui = Integer.parseInt(txtId.getText());
+            tutor.excluirTutor(idExclui);
+            JOptionPane.showMessageDialog(null, "Excluído com Sucesso");
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Exclusão cancelada");
+        }
     }
 
     /**

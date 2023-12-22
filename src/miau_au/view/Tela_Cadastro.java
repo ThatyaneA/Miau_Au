@@ -336,6 +336,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
         }else{
             CConsulta editOng = new CConsulta();
             editOng.editarOng(idEdit,tfNome.getText(),tfCnpj.getText(),tfDes.getText(), tfEma.getText(), tfTel.getText());
+            JOptionPane.showMessageDialog(null, "Editado com Sucesso");
         }
     }//GEN-LAST:event_btCadastraOngActionPerformed
 
@@ -351,6 +352,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
         }else{
             CConsulta editTutor = new CConsulta();
             editTutor.editarTutor(idEdit,tfNome.getText(),tfCnpj.getText(),tfDes.getText(), tfEma.getText(), tfTel.getText(), tfCep.getText());
+            JOptionPane.showMessageDialog(null, "Editado com Sucesso");
         }
     }//GEN-LAST:event_btCadasTutorActionPerformed
 

@@ -71,9 +71,9 @@ public class Tutor extends Pessoa {
     
     @Override
     public void excluirPessoa(int idPessoa){
-        DAOPessoa excluiP = new DAOPessoa();
-        excluiP.excluirPessoa(idPessoa);
         DAOTutor excluiT = new DAOTutor();
         excluiT.excluirTutor(idPessoa);
+        DAOPessoa excluiP = new DAOPessoa();
+        excluiP.excluirPessoa(idPessoa);
     }    
 }

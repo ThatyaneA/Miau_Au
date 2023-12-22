@@ -57,7 +57,7 @@ public class DAOTutor {
     
     public ArrayList<Tutor> listaTutores() throws SQLException{
         ArrayList<Tutor> lista = new ArrayList<> ();
-            String sql = "SELECT idPessoa, nome, cpf, email, endereco, telefone, cep FROM pessoa WHERE ORDER BY nome";
+            String sql = "SELECT idPessoa, nome, cpf, email, endereco, telefone, cep FROM pessoa ORDER BY nome";
             ResultSet rs = Conexao.consultar(sql);
         if (rs != null){
             try{
@@ -87,7 +87,7 @@ public class DAOTutor {
     
     public void editarPessoa(int idPessoa, String descricao){
         String sql = "UPDATE tutor SET "
-            +"descricao = '"+ descricao+ "', "
+            +"descricao = '"+ descricao+ "' "
             +"WHERE pessoa = "+ idPessoa;
         Conexao.executar(sql);     
     }
