@@ -28,8 +28,8 @@ public class CConsulta {
         Ong editO = new Ong(nome,cnpj,descricao,email,telefone);
         editO.editarOng(idOng);
     }
-    public void editarTutor(int idPessoa, String nome, String cpf, String email, String endereco, String telefone){
-        Tutor editT = new Tutor(nome, cpf, email, endereco, telefone);
+    public void editarTutor(int idPessoa, String nome, String cpf, String email, String endereco, String telefone, String cep){
+        Tutor editT = new Tutor(nome, cpf, email, endereco, telefone, cep);
         editT.editarPessoa(idPessoa);
     }
     public Ong consultaOng(String cnpj) throws SQLException{

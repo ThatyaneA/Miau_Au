@@ -4,9 +4,14 @@
  */
 package miau_au.view;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import miau_au.controller.CConsulta;
+import miau_au.model.Ong;
+import miau_au.model.Tutor;
 
 /**
  *
@@ -15,11 +20,160 @@ import miau_au.controller.CConsulta;
 public class Tela_Consultar extends javax.swing.JFrame {
     private int idEdit;
     private boolean editar= false;
+    private DefaultTableModel dtm;
     /**
      * Creates new form Tela_Consultar
      */
     public Tela_Consultar() {
         initComponents();
+        criarTabela();
+    }
+    
+     private void criarTabela(){
+        dtm = new DefaultTableModel(
+                new Object[][]{},
+                new Object[]{"ID", "Nome", "CNPJ/CPF", "Telefone", "Email", "Descrição", "Endereço", "CEP"}
+        );
+        
+        jTable.setModel(dtm);
+    }
+    
+    private void limparTabela(){
+        dtm.setRowCount(0);
+    }
+    
+    private void consultarONG() {
+        CConsulta cons = new CConsulta();
+        try
+        {
+            Ong ong = cons.consultaOng(jtfCNPJ.getText());
+            dtm.addRow(new String[] {
+                String.valueOf(ong.getIdOng()),
+                ong.getNome(),
+                ong.getCnpj(),
+                ong.getTelefone(),
+                ong.getEmail(),
+                ong.getDescricao(),
+                "--", "--"
+            });
+            
+            jTable.setModel(dtm);
+        }
+        catch(SQLException se)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta de ONG: " + se.getMessage());
+        }
+    }
+    
+    private void consultarTutor() {
+        CConsulta cons = new CConsulta();
+        try
+        {
+            Tutor tutor = cons.consultaTutor(jtfCPF.getText());
+            dtm.addRow(new String[] {
+                String.valueOf(tutor.getIdPessoa()),
+                tutor.getNome(),
+                tutor.getCpf(),
+                tutor.getTelefone(),
+                tutor.getEmail(),
+                tutor.getDescricao(),
+                tutor.getEndereco(),
+                tutor.getCep()
+            });
+            
+            jTable.setModel(dtm);
+        }
+        catch(SQLException se)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na consulta de Tutor: " + se.getMessage());
+        }
+    }
+    
+    private void pesquisarONG() {
+        CConsulta cons = new CConsulta();
+        try
+        {
+            ArrayList<Ong> ongs = cons.listaOngs();
+            for(Ong ong : ongs)
+            {
+                dtm.addRow(new String[] {
+                    String.valueOf(ong.getIdOng()),
+                    ong.getNome(),
+                    ong.getCnpj(),
+                    ong.getTelefone(),
+                    ong.getEmail(),
+                    ong.getDescricao(),
+                    "--", "--"
+                });
+            }
+            
+            jTable.setModel(dtm);
+        }
+        catch(SQLException se)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na pesquisa de ONG: " + se.getMessage());
+        }
+    }
+    
+    private void pesquisarTutor() {
+        CConsulta cons = new CConsulta();
+        try
+        {
+            ArrayList<Tutor> tutores = cons.listaTutores();
+            for(Tutor tutor : tutores)
+            {
+                dtm.addRow(new String[] {
+                    String.valueOf(tutor.getIdPessoa()),
+                    tutor.getNome(),
+                    tutor.getCpf(),
+                    tutor.getTelefone(),
+                    tutor.getEmail(),
+                    tutor.getDescricao(),
+                    tutor.getEndereco(),
+                    tutor.getCep()
+                });
+            }
+            
+            jTable.setModel(dtm);
+        }
+        catch(SQLException se)
+        {
+            JOptionPane.showMessageDialog(null, "Erro na pesquisa de Tutor: " + se.getMessage());
+        }
+    }
+    
+    private void editarONG() {
+        idEdit = Integer.parseInt(txtId.getText());
+        editar=true;
+        Tela_Cadastro TelaCadas = new Tela_Cadastro(editar, idEdit);
+        TelaCadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        TelaCadas.setVisible(true);
+        TelaCadas.setSize(688, 588);
+    }
+    
+    private void editarTutor() {
+        idEdit = Integer.parseInt(txtId.getText());
+        editar=true;
+        Tela_Cadastro TelaCadas = new Tela_Cadastro(editar, idEdit);
+        TelaCadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        TelaCadas.setVisible(true);
+        TelaCadas.setSize(691, 600);
+    }
+    
+    private void excluirONG(){
+        CConsulta ong= new CConsulta();
+         idExclui = Integer.parseInt(txtId.getText());
+        
+        JOptionPane.showInputDialog(null,"Informe o id:");
+        ong.excluirOng(idExclui);   
+    }
+    
+    private void excluirTutor() {
+        CConsulta tutor = new CConsulta();
+        idExclui = Integer.parseInt(txtId.getText());
+        
+        JOptionPane.showInputDialog(null,"Informe o id:");
+        tutor.excluirTutor(idExclui);   
     }
 
     /**
@@ -32,14 +186,14 @@ public class Tela_Consultar extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jtfCNPJ = new javax.swing.JTextField();
+        jtfCPF = new javax.swing.JTextField();
         jbConsultarOng = new javax.swing.JButton();
         jbConsultarTutor = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable = new javax.swing.JTable();
         jbEditarOng = new javax.swing.JButton();
         jbEditarTutor = new javax.swing.JButton();
         jbExcluirOng = new javax.swing.JButton();
@@ -54,12 +208,6 @@ public class Tela_Consultar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe Script", 0, 36)); // NOI18N
         jLabel1.setText("Miau-Au");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
         jbConsultarOng.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
         jbConsultarOng.setText("Consultar ONG");
         jbConsultarOng.addActionListener(new java.awt.event.ActionListener() {
@@ -70,6 +218,11 @@ public class Tela_Consultar extends javax.swing.JFrame {
 
         jbConsultarTutor.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
         jbConsultarTutor.setText("Consultar Tutor");
+        jbConsultarTutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbConsultarTutorActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe Script", 0, 10)); // NOI18N
         jLabel2.setText("CNPJ:");
@@ -77,7 +230,7 @@ public class Tela_Consultar extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe Script", 0, 10)); // NOI18N
         jLabel3.setText("CPF:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -88,7 +241,7 @@ public class Tela_Consultar extends javax.swing.JFrame {
                 "ID", "Nome", "CNPJ/CPF", "Telefone", "Email:", "Descrição", "Endereço", "CEP"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable);
 
         jbEditarOng.setFont(new java.awt.Font("Segoe Script", 0, 12)); // NOI18N
         jbEditarOng.setText("Editar ONG:");
@@ -174,14 +327,14 @@ public class Tela_Consultar extends javax.swing.JFrame {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jtfCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                     .addComponent(jbConsultarOng))
                                                 .addComponent(jbPesquisarOng, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGap(24, 24, 24)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jtfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                     .addComponent(jbConsultarTutor))
                                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -199,8 +352,8 @@ public class Tela_Consultar extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbConsultarTutor)
                     .addComponent(jbConsultarOng))
                 .addGap(8, 8, 8)
@@ -225,55 +378,49 @@ public class Tela_Consultar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jbPesquisarOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarOngActionPerformed
-        // TODO add your handling code here:
+        limparTabela();
+        pesquisarONG();
     }//GEN-LAST:event_jbPesquisarOngActionPerformed
 
     private void jbPesquisarTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarTutorActionPerformed
-        // TODO add your handling code here:
+        limparTabela();
+        pesquisarTutor();
     }//GEN-LAST:event_jbPesquisarTutorActionPerformed
 
     private void jbExcluirOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirOngActionPerformed
-        CConsulta ong= new CConsulta();
-         idExclui = Integer.parseInt(txtId.getText());
-        
-        JOptionPane.showInputDialog(null,"Informe o id:");
-        ong.excluirOng(idExclui);      
+        excluirONG();
+        limparTabela();
+        pesquisarONG();
     }//GEN-LAST:event_jbExcluirOngActionPerformed
 
     private void jbExcluirTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirTutorActionPerformed
-       CConsulta tutor = new CConsulta();
-        idExclui = Integer.parseInt(txtId.getText());
-        
-        JOptionPane.showInputDialog(null,"Informe o id:");
-        tutor.excluirTutor(idExclui);   
+        excluirTutor();
+        limparTabela();
+        pesquisarTutor();
     }//GEN-LAST:event_jbExcluirTutorActionPerformed
 
     private void jbEditarOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarOngActionPerformed
-        idEdit = Integer.parseInt(txtId.getText());
-        editar=true;
-        Tela_Cadastro TelaCadas = new Tela_Cadastro(editar, idEdit);
-        TelaCadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        TelaCadas.setVisible(true);
-        TelaCadas.setSize(688, 588);
+        editarONG();
+        limparTabela();
+        pesquisarONG();
     }//GEN-LAST:event_jbEditarOngActionPerformed
 
     private void jbEditarTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarTutorActionPerformed
-        idEdit = Integer.parseInt(txtId.getText());
-        editar=true;
-        Tela_Cadastro TelaCadas = new Tela_Cadastro(editar, idEdit);
-        TelaCadas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        TelaCadas.setVisible(true);
-        TelaCadas.setSize(691, 600);
+        editarTutor();
+        limparTabela();
+        pesquisarTutor();
     }//GEN-LAST:event_jbEditarTutorActionPerformed
 
     private void jbConsultarOngActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarOngActionPerformed
-        // TODO add your handling code here:
+        limparTabela();
+        consultarONG();
     }//GEN-LAST:event_jbConsultarOngActionPerformed
+
+    private void jbConsultarTutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConsultarTutorActionPerformed
+        limparTabela();
+        consultarTutor();
+    }//GEN-LAST:event_jbConsultarTutorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,9 +463,7 @@ public class Tela_Consultar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable jTable;
     private javax.swing.JButton jbConsultarOng;
     private javax.swing.JButton jbConsultarTutor;
     private javax.swing.JButton jbEditarOng;
@@ -327,6 +472,8 @@ public class Tela_Consultar extends javax.swing.JFrame {
     private javax.swing.JButton jbExcluirTutor;
     private javax.swing.JButton jbPesquisarOng;
     private javax.swing.JButton jbPesquisarTutor;
+    private javax.swing.JTextField jtfCNPJ;
+    private javax.swing.JTextField jtfCPF;
     private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }
