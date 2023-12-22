@@ -20,13 +20,13 @@ public class Tutor extends Pessoa {
         
     }
     
-    public Tutor(String descricao, String nome, String cpf, String email, String endereco, String telefone, Login login) {
-        super(nome, cpf, email, endereco, telefone, login);
+    public Tutor(String descricao, String nome, String cpf, String email, String endereco, String telefone, String cep, Login login) {
+        super(nome, cpf, email, endereco, telefone, cep, login);
         this.descricao = descricao;
     }
     
-    public Tutor(String nome, String cpf, String email, String endereco, String telefone) {
-        super(nome, cpf, email, endereco, telefone);
+    public Tutor(String nome, String cpf, String email, String endereco, String telefone, String cep) {
+        super(nome, cpf, email, endereco, telefone, cep);
     }
 
     public String getDescricao() {
