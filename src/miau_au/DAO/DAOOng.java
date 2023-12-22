@@ -37,11 +37,12 @@ public class DAOOng {
             String sql = "SELECT idOng, nome, cnpj, descricao, email, telefone FROM ong WHERE cpf='"+codigoCnpj+"'";
             ResultSet rs = Conexao.consultar(sql);
             while (rs.next()){
-            ong.setNome(rs.getString("nome"));
-            ong.setCnpj(rs.getString("cnpj"));
-            ong.setDescricao(rs.getString("descricao"));
-            ong.setEmail(rs.getString("email"));
-            ong.setTelefone(rs.getString("telefone"));
+                ong.setIdOng(rs.getInt("idOng"));
+                ong.setNome(rs.getString("nome"));
+                ong.setCnpj(rs.getString("cnpj"));
+                ong.setDescricao(rs.getString("descricao"));
+                ong.setEmail(rs.getString("email"));
+                ong.setTelefone(rs.getString("telefone"));
             }
         }catch(SQLException e){
             throw new SQLException(e);
@@ -56,12 +57,14 @@ public class DAOOng {
         if (rs != null){
             try{
                 while (rs.next()){
+                    int id = rs.getInt("idOng");
                     String nome = rs.getString("nome");
                     String cnpj = rs.getString("cnpj");
                     String descricao = rs.getString("descricao");
                     String email = rs.getString("email");
                     String telefone = rs.getString("telefone");
                     Ong ong = new Ong (nome, cnpj, descricao, email, telefone);
+                    ong.setIdOng(id);
                     lista.add(ong);
                 }
             }catch(SQLException e){

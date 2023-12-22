@@ -11,6 +11,7 @@ import miau_au.DAO.DAOOng;
  * @author thaty
  */
 public class Ong {
+    private int idOng;
     private String nome;
     private String cnpj;
     private String descricao;
@@ -23,6 +24,7 @@ public class Ong {
     }
     
     public Ong(String nome, String cnpj, String descricao, String email, String telefone, Login login) {
+        this.idOng = -1;
         this.nome = nome;
         this.cnpj = cnpj;
         this.descricao = descricao;
@@ -32,11 +34,20 @@ public class Ong {
     }
 
     public Ong(String nome, String cnpj, String descricao, String email, String telefone) {
+        this.idOng = -1;
         this.nome = nome;
         this.cnpj = cnpj;
         this.descricao = descricao;
         this.email = email;
         this.telefone = telefone;
+    }
+
+    public int getIdOng() {
+        return idOng;
+    }
+
+    public void setIdOng(int id) {
+        this.idOng = id;
     }
 
     public String getNome() {
