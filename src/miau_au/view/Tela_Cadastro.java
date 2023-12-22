@@ -350,7 +350,7 @@ public class Tela_Cadastro extends javax.swing.JFrame {
             }
         }else{
             CConsulta editTutor = new CConsulta();
-            editTutor.editarTutor(idEdit,tfNome.getText(),tfCnpj.getText(),tfDes.getText(), tfEma.getText(), tfTel.getText());
+            editTutor.editarTutor(idEdit,tfNome.getText(),tfCnpj.getText(),tfDes.getText(), tfEma.getText(), tfTel.getText(), tfCep.getText());
         }
     }//GEN-LAST:event_btCadasTutorActionPerformed
 

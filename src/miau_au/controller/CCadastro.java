@@ -24,7 +24,7 @@ public class CCadastro {
     public void CadastraTutor(String usuario, String senha, String nome, String cpf, String email, String telefone,String endereco, String cep,String descricao)throws SQLException{
         Login loginTutor = new Login(usuario,senha);
         loginTutor.cadastrarUsuario();
-        Tutor criaTutor = new Tutor(descricao, nome, cpf, email, endereco, telefone, loginTutor);
+        Tutor criaTutor = new Tutor(descricao, nome, cpf, email, endereco, telefone, cep, loginTutor);
         criaTutor.cadastrarPessoa();
     } 
 }
