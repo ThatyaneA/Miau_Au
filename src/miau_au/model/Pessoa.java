@@ -18,12 +18,40 @@ public abstract class Pessoa {
     private String cpf;
     private String email;
     private String endereco;
+    private String cep;
     private String telefone;
     private Login login;
     private int idPessoa;
 
     public Pessoa(){
         
+    }
+
+    public Pessoa(String nome,String cpf, String email, String endereco,String telefone, String cep, Login login){
+        this.nome=nome;
+        this.cpf=cpf;
+        this.email=email;
+        this.endereco=endereco;
+        this.cep = cep;
+        this.telefone=telefone;
+        this.login=login;
+    }
+    
+    public Pessoa(String nome,String cpf,String email, String endereco,String telefone, String cep){
+        this.nome=nome;
+        this.cpf=cpf;
+        this.email=email;
+        this.endereco=endereco;
+        this.cep = cep;
+        this.telefone=telefone;
+    }
+    
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
     
     public String getEmail() {
@@ -83,22 +111,7 @@ public abstract class Pessoa {
         this.login = login;
     }
     
-    public Pessoa(String nome,String cpf, String email, String endereco,String telefone, Login login){
-        this.nome=nome;
-        this.cpf=cpf;
-        this.email=email;
-        this.endereco=endereco;
-        this.telefone=telefone;
-        this.login=login;
-    }
     
-    public Pessoa(String nome,String cpf,String email, String endereco,String telefone){
-        this.nome=nome;
-        this.cpf=cpf;
-        this.email=email;
-        this.endereco=endereco;
-        this.telefone=telefone;
-    }
     
     public abstract void cadastrarPessoa() throws SQLException;
     
